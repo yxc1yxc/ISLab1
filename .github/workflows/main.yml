@@ -52,21 +52,27 @@ jobs:
               Write-Output "Im here"
               if ($LASTEXITCODE -eq 0) {
                   Write-Output "Program should have failed for bad input!"
-                  exit 1 # Fail the step.
+                  exit 2
               }
           } catch {
               Write-Output "Program crashed or encountered an exception!"
-              exit 1 # Fail the step.
+              exit 3
           }
         continue-on-error: true
 
 
-      - name: Check if previous step failed
+      - name: Check exit code from previous step
         run: |
-          if ("${{ steps.bad_input_check.outcome }}" -eq "failure") {
-            Write-Output "Previous step failed. Failing the workflow."
+          if ($env:EXIT_CODE -eq 2) {
+            Write-Output "Program should have failed for bad input!"
+            exit 1
+          } elseif ($env:EXIT_CODE -eq 3) {
+            Write-Output "Program crashed or encountered an exception!"
             exit 1
           }
+        env:
+          EXIT_CODE: ${{ steps.bad_input_check.outcome }}
+
 
 
 
