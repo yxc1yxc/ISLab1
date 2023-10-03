@@ -41,4 +41,5 @@ jobs:
 
       - name: Compare outputs
         run: fc 'student_output.txt' 'solution_output.txt'
+        shell: cmd
 
