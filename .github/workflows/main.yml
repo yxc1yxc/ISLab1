@@ -30,10 +30,16 @@ jobs:
         run: |
             g++ -o lab1 Main.cpp
 
+
+      - name: List Files
+        run: dir
+
+        
+
       - name: Run with proper input
         run: |
             echo "Processing input.txt..."
-            lab1.exe input_file.txt > student_output.txt
+            *.exe input_file.txt > student_output.txt
 
       - name: Compare outputs
         run: fc student_output.txt solution_output.txt
