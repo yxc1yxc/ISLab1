@@ -45,17 +45,28 @@ jobs:
 
 
       - name: Run with bad input
+        id: bad_input_check
         run: |
           try {
               .\lab1.exe gkaygakydfla
               Write-Output "Im here"
               if ($LASTEXITCODE -eq 0) {
                   Write-Output "Program should have failed for bad input!"
-                  exit 1 # Fail the workflow.
+                  exit 1 # Fail the step.
               }
           } catch {
               Write-Output "Program crashed or encountered an exception!"
-              exit 1 # Fail the workflow.
+              exit 1 # Fail the step.
           }
+        continue-on-error: true
+
+
+      - name: Check if previous step failed
+        run: |
+          if ("${{ steps.bad_input_check.outcome }}" == "failure") {
+            Write-Output "Previous step failed. Failing the workflow."
+            exit 1
+          }
+
 
 
