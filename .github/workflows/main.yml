@@ -40,6 +40,6 @@ jobs:
         run: dir
 
       - name: Compare outputs
-        run: fc 'student_output.txt' 'solution_output.txt'
+        run: fc student_output.txt solution_output.txt
         shell: cmd
 
