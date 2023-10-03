@@ -30,12 +30,15 @@ jobs:
         run: |
             g++ -o lab1 Main.cpp
 
-
-      - name: List Files
-        run: dir
+            
 
       - name: Run with proper input
         run: .\lab1.exe input_file.txt > student_output.txt 
 
+        
+      - name: List Files
+        run: dir
+
       - name: Compare outputs
-        run: fc .\student_output.txt .\solution_output.txt
+        run: fc 'student_output.txt' 'solution_output.txt'
+
