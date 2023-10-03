@@ -27,13 +27,13 @@ jobs:
 
       
       - name: Build
-      run: |
-        g++ -o lab1 *.cpp
+        run: |
+            g++ -o lab1 *.cpp
 
       - name: Run with proper input
-      run: |
-        echo "Processing input.txt..."
-        lab1.exe input.txt > student_output.txt
+        run: |
+            echo "Processing input.txt..."
+            lab1.exe input.txt > student_output.txt
 
-    - name: Compare outputs
-      run: fc student_output.txt solution_output.txt
+      - name: Compare outputs
+        run: fc student_output.txt solution_output.txt
