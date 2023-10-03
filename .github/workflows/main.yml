@@ -46,7 +46,6 @@ jobs:
 
       - name: Run with bad input
         run: |
-          $ErrorActionPreference = "Stop"  # Ensure any error stops the execution
           try {
               .\lab1.exe gkaygakydfla
               if ($LASTEXITCODE -eq 0) {
