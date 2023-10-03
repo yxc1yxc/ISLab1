@@ -34,10 +34,6 @@ jobs:
       - name: List Files
         run: dir
 
-      - name: Grant execute permissions
-        run: |
-            icacls "lab1.exe" /grant Everyone:RX
-
       - name: Run with proper input
         run: |
             echo "Processing input.txt..."
