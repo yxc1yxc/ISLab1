@@ -63,7 +63,7 @@ jobs:
 
       - name: Check if previous step failed
         run: |
-          if ("${{ steps.bad_input_check.outcome }}" == "failure") {
+          if ("${{ steps.bad_input_check.outcome }}" -eq "failure") {
             Write-Output "Previous step failed. Failing the workflow."
             exit 1
           }
