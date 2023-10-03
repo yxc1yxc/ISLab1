@@ -52,10 +52,12 @@ jobs:
               Write-Output "Im here"
               if ($LASTEXITCODE -eq 0) {
                   Write-Output "Program should have failed for bad input!"
+                  echo "MY_EXIT_CODE=2" >> $GITHUB_ENV
                   exit 2
               }
           } catch {
               Write-Output "Program crashed or encountered an exception!"
+              echo "MY_EXIT_CODE=3" >> $GITHUB_ENV
               exit 3
           }
         continue-on-error: true
@@ -63,15 +65,15 @@ jobs:
 
       - name: Check exit code from previous step
         run: |
-          if ($env:EXIT_CODE -eq 2) {
+          if ("${{ env.MY_EXIT_CODE }}" -eq "2") {
             Write-Output "Program should have failed for bad input!"
             exit 1
-          } elseif ($env:EXIT_CODE -eq 3) {
+          }
+          elseif ("${{ env.MY_EXIT_CODE }}" -eq "3") {
             Write-Output "Program crashed or encountered an exception!"
             exit 1
           }
-        env:
-          EXIT_CODE: ${{ steps.bad_input_check.outcome }}
+
 
 
 
