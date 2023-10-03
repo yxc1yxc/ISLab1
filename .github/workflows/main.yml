@@ -48,6 +48,7 @@ jobs:
         run: |
           try {
               .\lab1.exe gkaygakydfla
+              Write-Output "Im here"
               if ($LASTEXITCODE -eq 0) {
                   Write-Output "Program should have failed for bad input!"
                   exit 1 # Fail the workflow.
@@ -56,6 +57,5 @@ jobs:
               Write-Output "Program crashed or encountered an exception!"
               exit 1 # Fail the workflow.
           }
-        continue-on-error: true
 
 
