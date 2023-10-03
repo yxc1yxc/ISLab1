@@ -28,7 +28,7 @@ jobs:
       
       - name: Build
         run: |
-            g++ -o lab1 *.cpp
+            g++ -o lab1 Main.cpp
 
       - name: Run with proper input
         run: |
