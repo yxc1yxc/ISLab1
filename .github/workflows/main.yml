@@ -39,7 +39,7 @@ jobs:
       - name: Run with proper input
         run: |
             echo "Processing input.txt..."
-            *.exe input_file.txt > student_output.txt
+            lab1.exe input_file.txt > student_output.txt
 
       - name: Compare outputs
         run: fc student_output.txt solution_output.txt
