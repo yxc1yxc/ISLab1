@@ -51,5 +51,4 @@ jobs:
           echo "Program should have failed for bad input!"
           exit /b 1
           }
-          shell: cmd
 
