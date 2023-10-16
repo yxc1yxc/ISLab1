@@ -30,7 +30,7 @@ jobs:
         with:
           repository: yxc1yxc/gradingFiles
           token: ${{ secrets.WARNING }}
-          path: .grading
+          path: grading
       
 
       
@@ -44,7 +44,7 @@ jobs:
         run: cmake --build build --config Release
 
       - name: List Files
-        run: Get-ChildItem -Path .\grading\
+        run: Get-ChildItem -Path \grading\
             
 
       - name: Run with proper input
