@@ -35,14 +35,15 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
+      - name: List Files
+        run: dir
             
 
       - name: Run with proper input
-        run: .\build\lab1.exe input_file.txt > student_output.txt 
+        run: .\build\Release\lab1.exe input_file.txt > student_output.txt 
 
         
-      - name: List Files
-        run: dir
+      
 
       - name: Compare outputs
         run: fc student_output.txt solution_output.txt
