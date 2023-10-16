@@ -22,8 +22,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
+
+      - name: check grading files
+      - uses: actions/checkout@v3
+        with:
+          repository: <yxc1yxc>/<gradingFiles>
+          token: ${{ secrets.WARNING }}
+          path: .grading
 
       
       - name: Setup CMake
@@ -40,13 +46,13 @@ jobs:
             
 
       - name: Run with proper input
-        run: .\build\Release\*.exe input_file.txt > student_output.txt 
+        run: .\build\Release\*.exe .\grading\input_file.txt > student_output.txt 
 
         
       
 
       - name: Compare outputs
-        run: fc student_output.txt solution_output.txt
+        run: fc student_output.txt .\grading\solution_output.txt
         shell: cmd
 
 
