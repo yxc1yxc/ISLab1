@@ -26,12 +26,7 @@ jobs:
       - uses: actions/checkout@v3
 
 
-      - name: check grading files
-      - uses: actions/checkout@v3
-        with:
-          repository: <yxc1yxc>/<gradingFiles>
-          token: ${{ secrets.WARNING }}
-          path: .grading
+      
 
       
       - name: Setup CMake
