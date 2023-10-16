@@ -40,7 +40,7 @@ jobs:
             
 
       - name: Run with proper input
-        run: .\build\Release\lab1.exe input_file.txt > student_output.txt 
+        run: .\build\Release\*.exe input_file.txt > student_output.txt 
 
         
       
