@@ -44,7 +44,7 @@ jobs:
         run: cmake --build build --config Release
 
       - name: List Files
-        run: dir
+        run: Get-ChildItem -Path .\grading\
             
 
       - name: Run with proper input
