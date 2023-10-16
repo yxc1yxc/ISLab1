@@ -26,14 +26,19 @@ jobs:
       - uses: actions/checkout@v3
 
       
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.9
+
+      - name: Create Build Environment
+        run: cmake -B build
+
       - name: Build
-        run: |
-            g++ -o lab1 Main.cpp
+        run: cmake --build build --config Release
 
             
 
       - name: Run with proper input
-        run: .\lab1.exe input_file.txt > student_output.txt 
+        run: .\build\lab1.exe input_file.txt > student_output.txt 
 
         
       - name: List Files
