@@ -64,7 +64,7 @@ jobs:
       - name: Run with bad input
         id: bad_input_check
         run: |
-          .\lab1.exe gkaygakydfla
+          .\build\Release\*.exe gkaygakydfla
           if ($LASTEXITCODE -ne 0) {
             Write-Output "Program exited with a non-zero exit code: $LASTEXITCODE"
           } elseif ($?) {
