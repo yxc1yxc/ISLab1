@@ -68,13 +68,12 @@ jobs:
           .\build\Release\*.exe gkaygakydfla
           if ($LASTEXITCODE -eq 0) {
             Write-Output "Program should have failed for bad input!"
-            echo "MY_EXIT_CODE=2" >> $GITHUB_ENV
+            echo "::set-output name=exit_code::2"
             exit 2
           }
           } catch {
             Write-Output "Program crashed or encountered an exception!"
-            echo "MY_EXIT_CODE=3" >> $GITHUB_ENV
-            $executionSucceeded = $false
+            echo "::set-output name=exit_code::3"
             exit 3
           }
         continue-on-error: true
@@ -82,11 +81,11 @@ jobs:
 
       - name: Check exit code from previous step
         run: |
-          if ("${{ env.MY_EXIT_CODE }}" -eq "2") {
+          if ("${{ steps.bad_input_check.outputs.exit_code }}" -eq "2") {
             Write-Output "Program should have failed for bad input!"
             exit 1
           }
-          elseif ("${{ env.MY_EXIT_CODE }}" -eq "3") {
+          elseif ("${{ steps.bad_input_check.outputs.exit_code }}" -eq "3") {
             Write-Output "Program crashed or encountered an exception!"
             exit 1
           }
