@@ -64,18 +64,17 @@ jobs:
       - name: Run with bad input
         id: bad_input_check
         run: |
-          try {
-              .\lab1.exe gkaygakydfla
-              Write-Output "Im here"
-              if ($LASTEXITCODE -eq 0) {
-                  Write-Output "Program should have failed for bad input!"
-                  echo "MY_EXIT_CODE=2" >> $GITHUB_ENV
-                  exit 2
-              }
-          } catch {
-              Write-Output "Program crashed or encountered an exception!"
-              echo "MY_EXIT_CODE=3" >> $GITHUB_ENV
-              exit 3
+          .\lab1.exe gkaygakydfla
+          if ($LASTEXITCODE -ne 0) {
+            Write-Output "Program exited with a non-zero exit code: $LASTEXITCODE"
+          } elseif ($?) {
+            Write-Output "Program crashed or encountered an exception!"
+            echo "MY_EXIT_CODE=3" >> $GITHUB_ENV
+            exit 3
+          } else {
+            Write-Output "Program should have failed for bad input!"
+            echo "MY_EXIT_CODE=2" >> $GITHUB_ENV
+            exit 2
           }
         continue-on-error: true
 
