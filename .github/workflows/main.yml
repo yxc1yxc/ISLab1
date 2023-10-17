@@ -41,7 +41,7 @@ jobs:
         run: cmake -B build
 
       - name: Build
-        run: cmake --build build --config Release
+        run: cmake --build build --config Debug
 
       - name: List files
         run: dir
@@ -51,7 +51,7 @@ jobs:
             
 
       - name: Run with proper input
-        run: .\build\Release\*.exe .\grading\input_file.txt > student_output.txt 
+        run: .\build\Debug\*.exe .\grading\input_file.txt > student_output.txt 
 
         
       
@@ -65,7 +65,7 @@ jobs:
         id: bad_input_check
         run: |
           try {
-          .\build\Release\*.exe gkaygakydfla
+          .\build\Debug\*.exe gkaygakydfla
           if ($LASTEXITCODE -eq 0) {
             Write-Output "Program should have failed for bad input!"
             echo "::set-output name=exit_code::2"
