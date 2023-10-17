@@ -56,7 +56,7 @@ return_value parse_file (vector<string> & result, char * file_name) {
 
     }
     cout << "Error: could not open file" << endl; // reached if file could not be opened
-    return could_not_open_file;
+    return 0;
 }
 
 /**
