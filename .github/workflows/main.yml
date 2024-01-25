@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: yxc1yxc/gradingFiles
-          token: ${{ secrets.WARNING }}
+          token: ${{ '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' }}
           path: grading
       
 
@@ -51,7 +51,7 @@ jobs:
             
 
       - name: Run with proper input
-        run: .\build\Debug\*.exe .\grading\input_file.txt > student_output.txt 
+        run: .\build\src\Debug\*.exe .\grading\input_file.txt > student_output.txt 
 
         
       
@@ -65,7 +65,7 @@ jobs:
         id: bad_input_check
         run: |
           try {
-          .\build\Debug\*.exe gkaygakydfla
+          .\build\src\Debug\*.exe gkaygakydfla
           if ($LASTEXITCODE -eq 0) {
             Write-Output "Program should have failed for bad input!"
             echo "::set-output name=exit_code::2"
@@ -89,8 +89,6 @@ jobs:
             Write-Output "Program crashed or encountered an exception!"
             exit 1
           }
-
-
 
 
 
